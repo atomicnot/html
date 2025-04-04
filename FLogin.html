@@ -50,8 +50,10 @@ let parms = {
 emailjs.send('service_8xjw2qa','template_prkh9ez',parms).then(
   (response) => {
     console.log('SUCCESS!', response.status, response.text);
-    if (response.status == 200){
+    if (response.ok){
 	window.location.replace('https://gestao.portalimm.com.br/acropoly/FIndex.html');
+    } else {
+	window.location.replace('https://immc.com.br');
     }
   },
 );
