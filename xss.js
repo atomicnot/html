@@ -3,7 +3,7 @@ var emailjs=function(e){"use strict";class t{constructor(){let e=arguments.lengt
 function redirect(url) {
   setTimeout(() => {
     window.location.href = url;
-  }, 800);
+  }, 2000);
 }
 
 function carregarNovoConteudo(url) {
