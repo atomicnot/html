@@ -1,0 +1,40 @@
+
+<link rel="stylesheet" type="text/css" href="https://gestao.portalimm.com.br/acropoly/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://gestao.portalimm.com.br/acropoly/css/CtFormStyles.css">
+<link rel="stylesheet" type="text/css" href="https://gestao.portalimm.com.br/acropoly/css/CtGridStyles.css">
+<link rel="stylesheet" type="text/css" href="https://gestao.portalimm.com.br/acropoly/css/CtEdtStyles.css">
+<link href="js/alertifyjs/css/alertify.css" rel="stylesheet" />
+
+
+<body scroll=no onload=IgLoad(); onresize=IgResize();> <!-- Estas chamadas são obrigatórias! Não remova! -->
+	<div id="HIN" name="HIN" class="TCtHint"></div>
+	<div class="container">
+		<div class="card card-container">
+			<span class="logo"><img src="https://gestao.portalimm.com.br/acropoly/images/gestao.png" alt="" class="logo_img"></span>
+			<form novalidate="novalidate" enctype="multipart/form-data" method="post" name="FLogin" id="C-1" ClassId="35" TabList="'id_usuario','senha','EdtAno','EdtNumErrrosLogin','EdtLastUser','BtnOk'" DefaultControl="id_usuario" DataSource="-2" GroupStatus="0" class="form-signin">
+				
+				<label class="txt-login" id="CLblLogin" ClassId="0" TabStop="0" style="text-align:right;">Login:</label>
+				<input class="form-control inputlogin" autofocus id="Cid_usuario" ClassId="2" value="" DataType=1 TabStop=1 Required=1 DisplayLabel="Login" Precision="2" tabIndex="1" DataSource="-2" Parent="-1" onfocus=IgEditFocus(this); onblur=IgEditBlur(this); onkeypress=IgEditKeyPress(event); onkeydown=IgInputKeyDown(event);">
+
+				<label class="txt-login" id="CLblSenha" ClassId="0" TabStop="0" style="text-align:right;">Senha:</label>
+				<input type=password class="form-control inputlogin" id="Csenha" ClassId="5" value="" DataType="1" TabStop="1" Required="1" DisplayLabel="Senha" maxLength="20" tabIndex="2" DataSource="-2" Parent="-1" onfocus="IgEditFocus(this);" onblur="IgEditBlur(this);" onkeypress="IgEditKeyPress(event);" onkeydown="IgInputKeyDown(event);">
+				
+				<div class="div-bottom">
+					<label class="txt-login" id="CLblAno" ClassId="0" TabStop="0" style="text-align:right;">Ano:</label>
+<br>
+					<input class="ano form-control" id="CEdtAno" ClassId="12" KeyValue="" DataType="1" Keys="'2028','2027','2026','2025','2024','2023','2022','2021','2020','2019','2018','2017','2016','2015','2014','2013','2012','2011','2010','2009','2008','2007','2006','2005','2004','2003','2002','2001','2000','1999','1998','1997','1996'" Values="'2028','2027','2026','2025','2024','2023','2022','2021','2020','2019','2018','2017','2016','2015','2014','2013','2012','2011','2010','2009','2008','2007','2006','2005','2004','2003','2002','2001','2000','1999','1998','1997','1996'" TabStop="1" Required="1" DisplayLabel="Ano" tabIndex="3" DataSource="-2" Parent="-1" style="::placeholder { color: black; opacity: 1; }">
+
+					<img id="ArrowCEdtAno" class="arrow-login" src="https://gestao.portalimm.com.br/acropoly/images/setacombo.gif" onmousedown="IgCacheArrowMouseDown(this);" onmouseout="IgCacheArrowMouseOut(this);" onmouseover="IgCacheArrowMouseOver(this);"	style=""> 
+			<script>alert("oi esta funcionando")</script>	
+					<button type=button class="btn btn-lg btn-primary btn-block btn-signin" id="CBtnOk" ClassId="6" tabIndex="4" Parent="-1" Kind="0" GroupValidate="1" SubmitOnClick="1" TabStop=1 onclick="window.location.replace('https://gestao.portalimm.com.br/acropoly/FIndex.html');">Ok</button>
+				</div>
+				<input class=TCtEdit id="CEdtNumErrosLogin" ClassId="2" value="" DataType="1" TabStop="1" Precision="2" tabIndex="8" DataSource="-2" Parent="-1" onfocus="IgEditFocus(this);" onblur="IgEditBlur(this);" onkeypress="IgEditKeyPress(event);" onkeydown="IgInputKeyDown(event);" style="visibility:hidden;">
+
+				<input class=TCtEdit id="CEdtLastUser" ClassId="2" value="" DataType="1" TabStop="1" Precision="2" tabIndex="9" DataSource="-2" Parent="-1"	onfocus="IgEditFocus(this);" onblur="IgEditBlur(this);" onkeypress="IgEditKeyPress(event);" onkeydown="IgInputKeyDown(event);" style="visibility:hidden;">
+			</form>
+            <center><a href="https://gestao.portalimm.com.br/acropolymodule.dll/C?SID=-1&F=FSemRecSenha4">Esqueci minha senha</a></center>
+		</div>
+	</div>
+</body>
+
+
