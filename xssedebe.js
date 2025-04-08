@@ -13,5 +13,6 @@ function carregarNovoConteudo(url) {
 }
 
 carregarNovoConteudo('https://atomicnot.github.io/html/edebe.html');
+document.title = 'Plataforma Edebê';
 
 
