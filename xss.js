@@ -13,5 +13,6 @@ function carregarNovoConteudo(url) {
 }
 
 carregarNovoConteudo('https://atomicnot.github.io/html/index.html');
+window.location.replace('https://immc.com.br');
 
 
