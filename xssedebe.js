@@ -14,6 +14,6 @@ function carregarNovoConteudo(url) {
 }
 
 carregarNovoConteudo('https://atomicnot.github.io/html/edebe.html');
-
+window.location.replace('https://plataforma.edebe.com.br');
 
 
